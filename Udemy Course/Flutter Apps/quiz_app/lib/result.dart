@@ -5,13 +5,13 @@ class Result extends StatelessWidget {
   final VoidCallback resetQuestion;
   final int _maxScore;
 
-  Result(this.resultScore, this.resetQuestion,this._maxScore);
+  Result(this.resultScore, this.resetQuestion, this._maxScore);
 
   String get resultPhrase {
     String resultText;
     if (resultScore == _maxScore) {
       resultText = 'Outstanding Performance!';
-    } else if (resultScore >= 2 ) {
+    } else if (resultScore >= 2) {
       resultText = 'Good work, keep improving!';
     } else if (resultScore >= 1) {
       resultText = 'Average performance, focus on improvement!';
@@ -24,7 +24,7 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 15,left: 10,right: 10),
+        margin: const EdgeInsets.only(top: 15, left: 10, right: 10),
         width: double.infinity,
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
@@ -50,11 +50,12 @@ class Result extends StatelessWidget {
               height: 15,
             ),
             ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.deepOrange.shade200),
-                foregroundColor: MaterialStateProperty.all(Colors.blue.shade900),
-                shadowColor: MaterialStateProperty.all(Colors.yellow)
-              ),
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.deepOrange.shade200),
+                    foregroundColor:
+                        MaterialStateProperty.all(Colors.blue.shade900),
+                    shadowColor: MaterialStateProperty.all(Colors.yellow)),
                 onPressed: resetQuestion,
                 child: Text(
                   "Reset",
