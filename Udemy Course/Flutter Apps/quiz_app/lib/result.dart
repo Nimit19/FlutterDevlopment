@@ -5,7 +5,7 @@ class Result extends StatelessWidget {
   final VoidCallback resetQuestion;
   final int _maxScore;
 
-  Result(this.resultScore, this.resetQuestion, this._maxScore);
+  const Result(this.resultScore, this.resetQuestion, this._maxScore);
 
   String get resultPhrase {
     String resultText;
@@ -31,22 +31,22 @@ class Result extends StatelessWidget {
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "${resultPhrase}",
-              style: TextStyle(
+              resultPhrase,
+              style: const TextStyle(
                 fontSize: 25,
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
-              "Score: ${resultScore}/${_maxScore}",
-              style: TextStyle(
+              "Score: $resultScore/$_maxScore",
+              style: const TextStyle(
                 fontSize: 25,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             ElevatedButton(
@@ -57,7 +57,7 @@ class Result extends StatelessWidget {
                         MaterialStateProperty.all(Colors.blue.shade900),
                     shadowColor: MaterialStateProperty.all(Colors.yellow)),
                 onPressed: resetQuestion,
-                child: Text(
+                child: const Text(
                   "Reset",
                   style: TextStyle(fontSize: 25),
                 )),

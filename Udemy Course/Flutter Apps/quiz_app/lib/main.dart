@@ -36,7 +36,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _questions = const [
     {
-      "questionText": "Which programming language is used to build Flutter applications?",
+      "questionText":
+          "Which programming language is used to build Flutter applications?",
       "answers": [
         {"text": "Dart", "score": 1},
         {"text": "Kotlin", "score": 0},
@@ -54,7 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ]
     },
     {
-      "questionText": "What is the key configuration file used when building a Flutter project?",
+      "questionText":
+          "What is the key configuration file used when building a Flutter project?",
       "answers": [
         {"text": "pubspec.xml", "score": 0},
         {"text": "config.html", "score": 0},
@@ -69,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _answerQuestion(int score) {
     _scoreText += score;
-    
+
     setState(() {
       _questionIndex += 1;
     });
@@ -93,6 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 questions: _questions,
                 questionIndex: _questionIndex,
                 answerQuestion: _answerQuestion)
-            : Result(_scoreText,_resetQuestion,_questions.length));
+            : Result(_scoreText, _resetQuestion, _questions.length));
   }
 }
