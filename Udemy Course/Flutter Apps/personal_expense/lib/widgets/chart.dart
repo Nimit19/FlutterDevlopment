@@ -7,7 +7,7 @@ import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransaction;
-  Chart(this.recentTransaction);
+  const Chart(this.recentTransaction);
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
@@ -21,15 +21,13 @@ class Chart extends StatelessWidget {
           totalSum += recentTransaction[i].amount;
         }
       }
-      return {
-        'day': DateFormat.E().format(weekDay),
-        'amount': totalSum
-      };
+      return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
     });
   }
 
   double get totalSpending {
-    return groupedTransactionValues.fold<double>(0.000001, (sum, item) { // Check Later
+    return groupedTransactionValues.fold<double>(0.000001, (sum, item) {
+      // Check Later
       return sum + (item['amount'] as num);
     });
   }
@@ -45,13 +43,19 @@ class Chart extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            ...groupedTransactionValues.map((data) {
-              return Flexible(
-                fit: FlexFit.tight,
-                child: ChartBar(data['day'].toString(), data['amount'] as num,
-                    (totalSpending == 0.0 ? 0.0 : data['amount'] as num) / totalSpending),
-              );
-            }).toList().reversed,
+            ...groupedTransactionValues
+                .map((data) {
+                  return Flexible(
+                    fit: FlexFit.tight,
+                    child: ChartBar(
+                        data['day'].toString(),
+                        data['amount'] as num,
+                        (totalSpending == 0.0 ? 0.0 : data['amount'] as num) /
+                            totalSpending),
+                  );
+                })
+                .toList()
+                .reversed,
           ],
         ),
       ),
