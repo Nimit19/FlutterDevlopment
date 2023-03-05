@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
               bodyLarge: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
               bodyMedium: const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
               titleMedium: const TextStyle(
-                fontSize: 28,
+                fontSize: 25,
                 fontFamily: 'Itim',
                 fontWeight: FontWeight.bold,
               )),
