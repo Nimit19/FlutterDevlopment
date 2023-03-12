@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../models/product.dart';
+import './product.dart';
 
 class Products with ChangeNotifier {
-  List<Product> _item = [
+  final List<Product> _items = [
     Product(
       id: 'p1',
       title: 'Red Shirt',
@@ -38,12 +38,44 @@ class Products with ChangeNotifier {
     )
   ];
 
+  // var _showFavoritesOnly = false;
+
   List<Product> get items {
-    return [..._item];
+    // if (_showFavoritesOnly) {
+    //   return _items.where((element) => element.isFavorite).toList();
+    // }
+    return [..._items];
   }
 
-  void addProduct() {
-    // _item.add("Dd");
+  List<Product> get favItems {
+    return _items.where((element) => element.isFavorite).toList();
+  }
+
+  // void showFavoritesOnly() {
+  //   _showFavoritesOnly = true;
+  //   notifyListeners();
+  // }
+
+  // void showAll() {
+  //   _showFavoritesOnly = false;
+  //   notifyListeners();
+  // }
+
+  Product findById(String id) {
+    return _items.firstWhere((element) => element.id == id);
+  }
+
+  void addProduct(Product product) {
+    final newProduct = Product(
+      id: DateTime.now().toString(),
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      imageUrl: product.imageUrl,
+    );
+
+    _items.add(newProduct);
+    // _items.insert(0, newProduct);
     notifyListeners();
   }
 }
