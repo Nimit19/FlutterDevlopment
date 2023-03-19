@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 // import '../providers/cart.dart';
 import '../providers/cart.dart';
+import '../providers/products.dart';
 import '../widgets/product_grid.dart';
 import 'package:badges/badges.dart' as badge;
 
@@ -24,6 +25,24 @@ class ProductOverviewScreen extends StatefulWidget {
 
 class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   var _showOnlyFavorites = false;
+  var _isInit = true;
+  var _isLoading = false;
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<Products>(context).fetchAndSetProducts().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +98,12 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
           )
         ],
       ),
-      drawer: AppDrawer(),
-      body: ProductsGrid(showFavs: _showOnlyFavorites),
+      drawer: const AppDrawer(),
+      body: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ProductsGrid(showFavs: _showOnlyFavorites),
     );
   }
 }

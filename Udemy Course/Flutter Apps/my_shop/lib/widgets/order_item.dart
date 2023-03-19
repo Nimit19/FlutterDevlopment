@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../providers/orders.dart' as ord;
@@ -27,7 +25,7 @@ class _OrderItemState extends State<OrderItem> {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             subtitle: Text(
-              DateFormat('dd/MM/yyyy  HH:mm a').format(widget.order.dateTime),
+              DateFormat('dd/MM/yyyy  hh:mm a').format(widget.order.dateTime),
               style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
             ),
             trailing: IconButton(

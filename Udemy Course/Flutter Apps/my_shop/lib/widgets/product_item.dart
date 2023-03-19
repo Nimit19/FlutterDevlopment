@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/providers/auth.dart';
 import 'package:my_shop/providers/product.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: true);
     final cart = Provider.of<Cart>(context, listen: false);
+    final authData = Provider.of<Auth>(context, listen: false);
     return GestureDetector(
       onTap: () {
         Navigator.of(context)
@@ -35,7 +37,7 @@ class ProductItem extends StatelessWidget {
                 ),
                 color: Theme.of(context).colorScheme.secondary,
                 onPressed: () {
-                  product.toggleFavoriteStatus();
+                  product.toggleFavoriteStatus(authData.token, authData.userId);
                 },
               ),
             ),
